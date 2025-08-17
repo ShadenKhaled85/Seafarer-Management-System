@@ -22,6 +22,8 @@ export class SeafarerEmpDataComponent {
   seafarerEmployeeData!: any[];
   filteredseafarerEmployeeData!: any[];
   employee !: ISeafarer[];
+  sortColumn: string | null = null;
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   ngOnInit(){
     this.getAllSeafarers();
@@ -36,7 +38,7 @@ export class SeafarerEmpDataComponent {
 
       this.seafarerDisplayColumnsService.isColumnDisplay.subscribe({
         next:()=>{
-           this.displayColumns = seafarerDisplayedColumns
+          this.displayColumns = seafarerDisplayedColumns
           .filter(row => row.isVisible)
           .map(row=> ({
             id: row.id,
@@ -89,4 +91,27 @@ export class SeafarerEmpDataComponent {
     )
     console.log(this.filteredseafarerEmployeeData);
   }
+
+  // sortAsc(column: string) {
+  //   this.filteredseafarerEmployeeData.sort((a, b) =>
+  //     String(a[column]).localeCompare(String(b[column]))
+  //   );
+  // }
+
+  // sortDesc(column: string) {
+  //   this.filteredseafarerEmployeeData.sort((a, b) =>
+  //     String(b[column]).localeCompare(String(a[column]))
+  //   );
+  // }
+
+  // onSort(column: string) {
+  //   if (this.sortColumn === column && this.sortDirection === 'asc') {
+  //     this.sortDirection = 'desc';
+  //     this.sortDesc(column);
+  //   } else {
+  //     this.sortColumn = column;
+  //     this.sortDirection = 'asc';
+  //     this.sortAsc(column);
+  //   }
+  // }
 }

@@ -20,12 +20,15 @@ export class DisplayColumnsComponent implements OnInit {
   }
 
   onCheck(colId: number){
-  const selectedColumn = seafarerDisplayedColumns.find(row=> row.id == colId)?.id!
-  seafarerDisplayedColumns[selectedColumn].isVisible = !seafarerDisplayedColumns[selectedColumn].isVisible;
-  this.seafarerDisplayColumnsService.changeColumnDisplay();
+    const selectedColumn = seafarerDisplayedColumns.find(row=> row.id == colId)?.id!
+    seafarerDisplayedColumns[selectedColumn].isVisible = !seafarerDisplayedColumns[selectedColumn].isVisible;
+    this.seafarerDisplayColumnsService.changeColumnDisplay();
   }
 
   onCloseDisplayColumn(){
     this.closeDisplayColumn.emit(true);
   }
+
+
+
 }

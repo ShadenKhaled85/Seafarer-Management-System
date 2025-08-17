@@ -1,1 +1,48 @@
-<p>languages works!</p>
+<div class="mt-8">
+  <form [formGroup]="languageForm">
+    <table class="min-w-full">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Language</th>
+          <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Read</th>
+          <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Write</th>
+          <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Speak</th>
+          <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold"></th>
+        </tr>
+      </thead>
+
+      <tbody formArrayName="Languages">
+        <tr *ngFor="let Language of languages.controls; let i = index" [formGroupName]="i">
+          <td class="mx-4 pe-1 py-2">
+            <input type="text" formControlName="Language"
+              class="w-full outline-0 border-b border-gray-200 focus:border-blue-500" />
+          </td>
+          <td class="mx-4 pe-1 py-2">
+            <input type="text" formControlName="Read"
+              class="w-full outline-0 border-b border-gray-200 focus:border-blue-500" />
+          </td>
+          <td class="mx-4 pe-1 py-2">
+            <input type="text" formControlName="Write"
+              class="w-full outline-0 border-b border-gray-200 focus:border-blue-500" />
+          </td>
+          <td class="mx-4 pe-1 py-2">
+            <input type="text" formControlName="Speak"
+              class="w-full outline-0 border-b border-gray-200 focus:border-blue-500" />
+          </td>
+          <td class="mx-4 pe-1 py-2 text-center">
+            <button type="button" (click)="removeLanguage(i)" class="cursor-pointer text-red-500 px-2 py-1">
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mt-4 flex gap-2">
+      <button type="button" (click)="addLanguage()" class="cursor-pointer text-blue-600">
+        + Add Language
+      </button>
+
+    </div>
+  </form>
+</div>

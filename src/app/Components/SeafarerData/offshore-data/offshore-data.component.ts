@@ -15,11 +15,10 @@ export class OffshoreDataComponent implements OnInit{
 
   ngOnInit(): void {
     this.callEntityForm();
-    this.AddSeafarerFormsService.submitEntityForm()
   }
 
   callEntityForm(){
     this.entityForm = this.AddSeafarerFormsService.entityForm;
-    console.log(this.entityForm);
+    console.log(this.entityForm.value);
   }
 }

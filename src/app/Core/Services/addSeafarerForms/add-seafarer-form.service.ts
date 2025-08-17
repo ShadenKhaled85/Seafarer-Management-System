@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ICertificate, IQualificaiton } from '../../../Models/ISeafarer';
+import { ICertificate, IQualificaiton, ISeafarer } from '../../../Models/ISeafarer';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AddSeafarerFormsService {
 
   seafarerForm!: FormGroup; // Main Form
@@ -12,7 +16,13 @@ export class AddSeafarerFormsService {
   qualificationData: IQualificaiton[] = [];
   certificateData: ICertificate[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  private token = 'Zmx8WZ4E30uT0TjTd4qRrdAes1H_NFSj4qGPfb2Kn1UuqE9pPjf4bpNsFoIN7_5afxQPsEkEG7sfex31Vpx84AorpaG5gBP25pA2ESjpT7EWV39YJ7ykpJpEf7FLn9jRhhD7ory-pP6p73EP_EgIXieWE1nfR_dMYtrWKPcUdWasIberamTCC6XFbsW-SBynWtQZs-BcH7qCuljG7_KmihVaiO5IDiQDqwudW229aTury2-nz6LOWhTEtQINeAdDugs-Myg7UlXfm0cJ55Oi8ONB_jDWH6GNlOU-_TwZmQk1fAODLxB0f9sT05mxvJfTbLCYLpe7Bt6unliUfZef_tNvJ1FuA3fc6XbwZ1Wf2EJtFg4Lv5Y4I5QlY6KGZO7_Y9mnde2RF8RdlDtRh5lMRAwj-B1JxzBZD8cmatcz0UE-7KNijZ3EAJ1AwsaHpn10iYBPA2lKDtjU8kDO2GhGuRuupgGfCnJUy-9nds5SknjPfOawo539eXFn8baQQUNLoH8EU3nAVUGKR9lHTRZUszA6aAVlhFiGnH3S8ZI5oKA';
+
+  private headers = new HttpHeaders({
+    Authorization: `Bearer ${this.token}`
+  });
+
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
     // ======== ENTITY FORM ========
       this.entityForm = this.formBuilder.group({
 
@@ -20,12 +30,13 @@ export class AddSeafarerFormsService {
             EmpId: [0],
             Nationality: [null],
             BirthDate: [null],
-            Age: [{ value: null, disabled: true }],
+            // Age: [{ value: null, disabled: true }],
+            Age: [null],
             BirthPlace: [null],
             Religion: [null],
             MaritalStatus: [null],
             NameOfSpouse: [null],
-            NoOfChildren: [0, [Validators.required]],
+            NoOfChildren: [0],
             BodyWeight: [0],
             Height: [0],
             NearestAirport: [null],
@@ -56,6 +67,23 @@ export class AddSeafarerFormsService {
             CicpaNO: [null],
             CicpaIssueDate: [null],
             CicpaExpiryDate: [null],
+
+            // Extra Fields
+            IDExPiryDate: [null],
+            SkypeID: [null],
+            Declaration: [null],
+            SignedOffFromAShipDueToMedicalReason: [null],
+            SignedOffFromAShipDueToMedicalReasonComment: [null],
+            UndergoneAnyMdicalOperation: [null],
+            UndergoneAnyMdicalOperationComment: [null],
+            DoctorConsultation: [null],
+            DoctorConsultationComment: [null],
+            HealthOrDisabilityProblem: [null],
+            HealthOrDisabilityProblemComment: [null],
+            InquiryOrInvolvedMaritimeAccident: [null],
+            InquiryOrInvolvedMaritimeAccidentComment: [null],
+            LicenseSuspendedOrRevoked: [null],
+            LicenseSuspendedOrRevokedComment: [null]
       })
 
     // ======== MAIN SEAFARER FORM ========
@@ -64,7 +92,8 @@ export class AddSeafarerFormsService {
       Qualifications: this.qualificationData,
       Certificates: this.certificateData,
       Languages: this.formBuilder.array([]),
-      References: this.formBuilder.array([])
+      References: this.formBuilder.array([]),
+      WorkExperiences: this.formBuilder.array([])
     });
   }
 
@@ -78,7 +107,6 @@ export class AddSeafarerFormsService {
     this.qualificationData.splice(index, 1);
   }
 
-
   // Add a new certificate
   addCertificate(certificateData:ICertificate){
     this.certificateData.push(certificateData);
@@ -90,65 +118,53 @@ export class AddSeafarerFormsService {
   }
 
   // ======== Languages ========
-  createLanguages(): FormGroup{
+  createLanguage(): FormGroup{
     return this.formBuilder.group({
-      Capacity: [null],
-      Regulation: [null],
-      IssueDate: [null],
-      ExpiryDate: [null],
-      IssuingAuthority: [null],
-      Limitations: [null],
-      Country: [null],
+      Language: [null],
+      Read: [null],
+      Write: [null],
+      Speak: [null],
     })
   }
 
-  // ======== References ========
-  createReference(): FormGroup{
-    return this.formBuilder.group({
-      PersonName: [null],
-      CompanyName: [null],
-      Country: [null],
-      Fax: [null],
-      EmailId: [null],
-    })
+  get languages(): FormArray {
+    return this.seafarerForm.get('Languages') as FormArray;
   }
 
+// ======== SUBMIT SEAFARER FORM ========
+  saveSeafarer(): Observable<ISeafarer> {
+    const payload = {
+      entity: this.entityForm.value,
+      Qualifications: this.qualificationData,
+      Certificates: this.certificateData,
+      Languages: this.languages.value,
+      References: this.formBuilder.array([]).value,
+      WorkExperiences: this.formBuilder.array([]).value
+    };
 
-  // ======== SUBMIT SEAFARER FORM ========
-  submitSeafarerForm() {
-    if (this.seafarerForm.valid) {
-      console.log(this.seafarerForm.value);
-    } else {
-      console.warn('Form is invalid');
-    }
-  }
-
-    submitEntityForm(){
-    if(this.entityForm.valid){
-      console.log(this.entityForm.value);
-    }
-  }
+    console.log("Payload sent:", payload);
+    return this.httpClient.post<ISeafarer>(
+      `${environment.baseUrl}/api/MarineServices/SaveSeafarer?InCT`,
+      payload,
+      { headers: this.headers }
+    );
+}
 
 }
 
-    //     Qualifications: this.fb.array([]),
-    //     Certificates: this.fb.array([]),
-    //     Languages: this.fb.array([]),
-    //     References: this.fb.array([]),
-    //     WorkExperiences: this.fb.array([])
-    //   });
+  // ======== References ========
+  // createReference(): FormGroup{
+  //   return this.formBuilder.group({
+  //     PersonName: [null],
+  //     CompanyName: [null],
+  //     Country: [null],
+  //     Fax: [null],
+  //     EmailId: [null],
+  //   })
+  // }
 
 
-    // // FormArray getters
-    // get qualifications(): FormArray {
-    //   return this.seafarerForm.get('Qualifications') as FormArray;
-    // }
-    // get certificates(): FormArray {
-    //   return this.seafarerForm.get('Certificates') as FormArray;
-    // }
-    // get languages(): FormArray {
-    //   return this.seafarerForm.get('Languages') as FormArray;
-    // }
+
     // get references(): FormArray {
     //   return this.seafarerForm.get('References') as FormArray;
     // }
@@ -156,45 +172,6 @@ export class AddSeafarerFormsService {
     //   return this.seafarerForm.get('WorkExperiences') as FormArray;
     // }
 
-    // // Add Qualification
-    // addQualification() {
-    //   this.qualifications.push(this.fb.group({
-    //     DegreeOrCourse: [''],
-    //     CourseIssueDate: [''],
-    //     ExpiryDate: [''],
-    //     MajorOrSubject: [''],
-    //     University: [''],
-    //     Country: [''],
-    //     Type: [1]
-    //   }));
-    // }
-
-    // // Add Certificate
-    // addCertificate() {
-    //   this.certificates.push(this.fb.group({
-    //     Capacity: [''],
-    //     Regulation: [''],
-    //     IssueDate: [''],
-    //     ExpiryDate: [''],
-    //     IssuingAuthority: [''],
-    //     Limitations: [''],
-    //     Country: [''],
-    //     Type: [1]
-    //   }));
-    // }
-
-    // // Add Language
-    // addLanguage() {
-    //   this.languages.push(this.fb.group({
-    //     Capacity: [''],
-    //     Regulation: [''],
-    //     IssueDate: [''],
-    //     ExpiryDate: [''],
-    //     IssuingAuthority: [''],
-    //     Limitations: [''],
-    //     Country: ['']
-    //   }));
-    // }
 
     // // Add Reference
     // addReference() {

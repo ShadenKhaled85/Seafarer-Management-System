@@ -1,6 +1,6 @@
 <form [formGroup]="certficatesForm">
 
-  <div class="grid grid-cols-2 gap-x-6 gap-y-4 border-b border-gray-200 pb-4 mb-4">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-4 pb-4 mb-4">
 
     <!-- ? Capacity -->
     <div>
@@ -52,7 +52,7 @@
   </div>
 
 
-  <!-- Add button -->
+  <!-- ? Add button -->
   <div class="flex justify-end items-center gap-4 py-4">
     <button type="button" (click)="addCertificate()"
       class="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded-lg">Add</button>
@@ -62,32 +62,32 @@
 
 <div class="mt-8">
   <h2 class="text-lg font-semibold mb-4">Added Certificates</h2>
-  <table class="min-w-full border border-gray-300">
+  <table class="min-w-full">
     <thead class="bg-gray-100">
       <tr>
-        <th class="border px-4 py-2 text-left">Capacity</th>
-        <th class="border px-4 py-2 text-left">Regulation</th>
-        <th class="border px-4 py-2 text-left">Issue Date</th>
-        <th class="border px-4 py-2 text-left">Expiry Date</th>
-        <th class="border px-4 py-2 text-left">Issuing Authority</th>
-        <th class="border px-4 py-2 text-left">Limitations</th>
-        <th class="border px-4 py-2 text-left">Country</th>
-        <th class="border px-4 py-2 text-left">Type</th>
-        <th class="border px-4 py-2 text-left">Actions</th>
+        <th class="px-2 py-2 text-left text-sm text-gray-500 font-semibold">Capacity</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Regulation</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Issue Date</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Expiry Date</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Issuing Authority</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Limitations</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Country</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Type</th>
+        <th class="px-4 py-2 text-left text-sm text-gray-500 font-semibold">Actions</th>
       </tr>
     </thead>
     <tbody>
       @for (cert of certificateData; track $index) {
       <tr>
-        <td class="border px-4 py-2 text-left">{{cert.Capacity}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.Regulation}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.IssueDate}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.ExpiryDate}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.IssuingAuthority}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.Limitations}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.Country}}</td>
-        <td class="border px-4 py-2 text-left">{{cert.Type}}</td>
-        <td (click)="removeCertificate($index)" class="cursor-pointer text-red-800 border px-4 py-2 text-center">X</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.Capacity}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.Regulation}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.IssueDate}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.ExpiryDate}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.IssuingAuthority}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.Limitations}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.Country}}</td>
+        <td class="border-b border-gray-200 text-left ps-4">{{cert.Type}}</td>
+        <td (click)="removeCertificate($index)" class="cursor-pointer text-red-500 text-center px-2 py-1">X</td>
       </tr>
 
       }
