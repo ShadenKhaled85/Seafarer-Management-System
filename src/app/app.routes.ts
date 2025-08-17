@@ -9,12 +9,12 @@ import { NewSeafarerComponent } from './Components/new-seafarer/new-seafarer.com
 import { PersonalDataComponent } from './Components/SeafarerData/personal-data/personal-data.component';
 import { ContactDataComponent } from './Components/SeafarerData/contact-data/contact-data.component';
 import { OffshoreDataComponent } from './Components/SeafarerData/offshore-data/offshore-data.component';
-import { EducationalQualificationsComponent } from './Components/SeafarerData/educational-qualifications/educational-qualifications.component';
 import { CertificateComponent } from './Components/SeafarerData/certificate/certificate.component';
 import { OtherTrainingComponent } from './Components/SeafarerData/other-training/other-training.component';
 import { LanguagesComponent } from './Components/SeafarerData/languages/languages.component';
 import { HealthDataComponent } from './Components/SeafarerData/health-data/health-data.component';
 import { ReferencesComponent } from './Components/SeafarerData/references/references.component';
+import { EducationalQualificationsComponent } from './Components/SeafarerData/educational-qualifications/educational-qualifications/educational-qualifications.component';
 
 export const routes: Routes = [
   {path:'' , redirectTo: 'seafarers', pathMatch: 'full'},

@@ -123,10 +123,28 @@ export interface ISeafarerQualificationDetail{
   Type: number
 }
 
+export interface IQualificaiton{
+  DegreeOrCourse: string;
+  MajorOrSubject: string;
+  CourseIssueDate: string;
+  University: string;
+  Country: string;
+}
 
 export interface ISeafarerCertificates{
   Id: number
   SeaFarerId: number
+  Capacity: string
+  Regulation: string
+  IssueDate: string
+  ExpiryDate: string
+  IssuingAuthority: string
+  Country: string
+  Limitations: string
+  Type: any
+}
+
+export interface ICertificate{
   Capacity: string
   Regulation: string
   IssueDate: string

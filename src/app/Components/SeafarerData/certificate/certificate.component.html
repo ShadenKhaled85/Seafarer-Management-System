@@ -1,46 +1,97 @@
-<form class="grid grid-cols-2 gap-x-6 gap-y-4">
+<form [formGroup]="certficatesForm">
 
-  <!-- ? Capacity -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Capacity</label>
-    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-4 border-b border-gray-200 pb-4 mb-4">
+
+    <!-- ? Capacity -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Capacity</label>
+      <input formControlName="Capacity" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? Regulation -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Regulation</label>
+      <input formControlName="Regulation" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? IssueDate -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">IssueDate</label>
+      <input formControlName="IssueDate" type="date" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? ExpiryDate -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">ExpiryDate</label>
+      <input formControlName="ExpiryDate" type="date" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? Country -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">IssuingAuthority</label>
+      <input formControlName="IssuingAuthority" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? Limitations -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Limitations</label>
+      <input formControlName="Limitations" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? Country -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+      <input formControlName="Country" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
+
+    <!-- ? Type -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+      <input formControlName="Type" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+    </div>
   </div>
 
-  <!-- ? Regulation -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Regulation</label>
-    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
-  </div>
 
-  <!-- ? Issue Date -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Issue Date</label>
-    <input type="date" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
-  </div>
-
-  <!-- ? Expiry Date -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
-    <input type="date" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
-  </div>
-
-  <!-- ? Issuing Authority
- -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Issuing Authority</label>
-    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
-  </div>
-
-  <!-- ? Limitations -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Limitations</label>
-    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
-  </div>
-
-  <!-- ? Country -->
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
-    <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  <!-- Add button -->
+  <div class="flex justify-end items-center gap-4 py-4">
+    <button type="button" (click)="addCertificate()"
+      class="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded-lg">Add</button>
   </div>
 
 </form>
+
+<div class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Added Certificates</h2>
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border px-4 py-2 text-left">Capacity</th>
+        <th class="border px-4 py-2 text-left">Regulation</th>
+        <th class="border px-4 py-2 text-left">Issue Date</th>
+        <th class="border px-4 py-2 text-left">Expiry Date</th>
+        <th class="border px-4 py-2 text-left">Issuing Authority</th>
+        <th class="border px-4 py-2 text-left">Limitations</th>
+        <th class="border px-4 py-2 text-left">Country</th>
+        <th class="border px-4 py-2 text-left">Type</th>
+        <th class="border px-4 py-2 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (cert of certificateData; track $index) {
+      <tr>
+        <td class="border px-4 py-2 text-left">{{cert.Capacity}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.Regulation}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.IssueDate}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.ExpiryDate}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.IssuingAuthority}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.Limitations}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.Country}}</td>
+        <td class="border px-4 py-2 text-left">{{cert.Type}}</td>
+        <td (click)="removeCertificate($index)" class="cursor-pointer text-red-800 border px-4 py-2 text-center">X</td>
+      </tr>
+
+      }
+
+    </tbody>
+  </table>
+</div>

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ICertificate, IQualificaiton } from '../../../Models/ISeafarer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddSeafarerFormsService {
 
-  entityForm !: FormGroup;
   seafarerForm!: FormGroup; // Main Form
+  entityForm !: FormGroup;
+  qualificationData: IQualificaiton[] = [];
+  certificateData: ICertificate[] = [];
 
   constructor(private formBuilder: FormBuilder) {
     // ======== ENTITY FORM ========
@@ -58,65 +61,32 @@ export class AddSeafarerFormsService {
     // ======== MAIN SEAFARER FORM ========
     this.seafarerForm = this.formBuilder.group({
       entity: this.entityForm,
-      Qualifications: this.formBuilder.array([this.createQualification()]),
-      Certificates: this.formBuilder.array([]),
+      Qualifications: this.qualificationData,
+      Certificates: this.certificateData,
       Languages: this.formBuilder.array([]),
       References: this.formBuilder.array([])
     });
   }
 
-  // ======== QUALIFICATIONS ========
-  createQualification(): FormGroup {
-    return this.formBuilder.group({
-      DegreeOrCourse: [null, Validators.required],
-      MajorOrSubject: [null, Validators.required],
-      CourseIssueDate: [null, Validators.required],
-      University: [null, Validators.required],
-      Country: [null, Validators.required],
-    });
-  }
-
-  // Get qualifications form array
-  get getQualificationsForm(){
-    return this.seafarerForm.get('Qualifications') as FormArray;
-  }
-
   // Add a new qualification
-  addQualification() {
-    this.getQualificationsForm.push(this.createQualification());
+  addQualification(qualificationData: IQualificaiton) {
+    this.qualificationData.push(qualificationData);
   }
 
   // Remove qualification by index
   removeQualification(index: number) {
-    this.getQualificationsForm.removeAt(index);
+    this.qualificationData.splice(index, 1);
   }
 
-  // ======== Certificates ========
-  createCertificates(): FormGroup{
-    return this.formBuilder.group({
-      Capacity: [null],
-      Regulation: [null],
-      IssueDate: [null],
-      ExpiryDate: [null],
-      IssuingAuthority: [null],
-      Limitations: [null],
-      Country: [null],
-      Type: [null],
-    })
-  }
-
-  // Get Certificates form array
-  get CertificatesForm(): FormArray{
-    return this.seafarerForm.get('Certificates') as FormArray;
-  }
 
   // Add a new certificate
-  addCertificate(){
-    // this.CertificatesForm().push(this.createCertificates());
+  addCertificate(certificateData:ICertificate){
+    this.certificateData.push(certificateData);
   }
 
+  // Remove certificate by index
   removeCertificate(index:number){
-    // this.getQualificationsForm().removeAt(index)
+    this.certificateData.splice(index,1);
   }
 
   // ======== Languages ========
