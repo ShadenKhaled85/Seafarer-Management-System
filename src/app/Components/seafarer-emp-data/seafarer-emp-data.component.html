@@ -1,0 +1,27 @@
+<div class="overflow-x-auto">
+  <table class="mt-4  min-w-[90rem]">
+    <thead class="uppercase bg-gray-50 text-gray-500">
+      <tr>
+        @for (col of displayColumns; track $index) {
+        <th class="px-4 py-2">{{col.displayedColumnName}}</th>
+        }
+      </tr>
+    </thead>
+    @if (this.filteredseafarerEmployeeData) {
+    <tbody>
+      @for (seafarer of filteredseafarerEmployeeData; track $index) {
+      <tr>
+        @for (col of displayColumns; track $index) {
+        <td>{{seafarer[col.databaseColumnName]}}</td>
+        }
+      </tr>
+      }
+
+    </tbody>
+    }
+
+
+
+
+  </table>
+</div>

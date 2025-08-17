@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'SeafarerManagementSystem' title`, () => {
+  it(`should have the 'CloudSoftTask' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('SeafarerManagementSystem');
+    expect(app.title).toEqual('CloudSoftTask');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, SeafarerManagementSystem');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, CloudSoftTask');
   });
 });

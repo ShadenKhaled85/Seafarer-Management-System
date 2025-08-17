@@ -1,0 +1,19 @@
+table{
+  border: 1px solid  rgb(228, 228, 228);
+  border-radius: 0.7rem;
+}
+thead th {
+  height: 4rem; 
+  font-size: 0.8rem;
+  min-width: fit-content;
+  border-bottom: 1px solid rgb(184, 184, 184);
+
+
+}
+
+tbody td{
+  padding: 0.5rem 1rem;
+  min-width: fit-content;
+  border-bottom: 1px solid rgb(184, 184, 184);
+
+}

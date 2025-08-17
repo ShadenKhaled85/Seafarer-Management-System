@@ -1,0 +1,21 @@
+<div>
+  <div class="p-6 border-b">
+    <h3 class="text-lg font-medium">Display Columns</h3>
+  </div>
+  @if (displayColumns) {
+  <div class="display-columns-body p-6 grid grid-cols-2 sm:grid-cols-3 gap-4 max-h-96 overflow-y-auto custom-scrollbar">
+    @for (col of displayColumns; track $index) {
+    <div class="flex items-center space-x-3" (click)="onCheck(col.id)">
+      <input type="checkbox" class="column-toggle h-4 w-4 text-blue-600
+                border-gray-300 rounded focus:ring-blue-500" [checked]="col.isVisible">
+      <span class="display-column">{{col.displayedColumnName}}</span>
+    </div>
+
+    }
+  </div>
+  }
+  <div class="px-6 py-4 bg-gray-50 flex justify-end">
+    <button id="close-column-panel" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+      (click)="onCloseDisplayColumn()">Close</button>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<nav class="bg-gradient-to-r shadow-md border-gray-200">
+  <div class="max-w-screen-2xl mx-auto flex items-center justify-between p-4 gap-4">
+    <!-- ? Logo + Title -->
+    <div class="flex items-center flex-shrink-0">
+      <svg class="h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+      </svg>
+      <h1 class="text-xl font-bold text-gray-800 ml-3">
+        Marine Service Module
+      </h1>
+    </div>
+
+    <!-- ? Search -->
+    <div class="md:flex flex-1 justify-center">
+      <input type="text" class="w-64 px-3 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+
+    <!-- ? Nav Links -->
+    <div class="flex items-center">
+
+      <!-- ? Mobile Toggle Button -->
+      <button (click)="isMenuOpen = !isMenuOpen" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden
+          hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-white transition" aria-controls="navbar-default"
+        aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <!-- ? Menu Icon -->
+        <svg [class.hidden]="isMenuOpen" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+        <!-- ? Close Icon -->
+        <svg [class.hidden]="!isMenuOpen" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1l15 12M1 13L16 1" />
+        </svg>
+      </button>
+
+      <!-- ? Menu Links -->
+      <div [class.hidden]="!isMenuOpen"
+        class="w-full text-white md:flex flex-grow justify-between md:w-auto md:px-4 transition-all duration-400 ease-in-out"
+        id="navbar-default">
+        <ul class="capitalize font-medium flex flex-col p-4 md:p-0 mt-4 border border-blue-500 rounded-lg
+          md:flex-row md:space-x-6 md:mt-0 md:border-0">
+          <li><a routerLink="dashboard" routerLinkActive="bg-blue-600 text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Dashboard</a>
+          </li>
+          <li><a routerLink="vacancies" routerLinkActive="bg-blue-600 text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Vacancies</a>
+          </li>
+          <li><a routerLink="seafarers" routerLinkActive="bg-blue-600 text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Seafarers</a>
+          </li>
+          <li><a routerLink="vessels" routerLinkActive="bg-blue-600 text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Vessels</a>
+          </li>
+          <li><a routerLink="prejoining" routerLinkActive="bg-blue-600 text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Pre-joining</a>
+          </li>
+          <li><a routerLink="planning" routerLinkActive="bg-blue-600  text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Planning</a>
+          </li>
+          <li><a routerLink="payroll" routerLinkActive="bg-blue-600  text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Payroll</a>
+          </li>
+          <li><a routerLink="reports" routerLinkActive="bg-blue-600  text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Reports</a>
+          </li>
+          <li><a routerLink="setting" routerLinkActive="bg-blue-600  text-white rounded-lg"
+              class="block py-2 px-3 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-700 transition">Setting</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</nav>

@@ -1,0 +1,42 @@
+<div class="pt-4 flex-col">
+  <div class="flex gap-2">
+    <!-- ? Add Seafarer -->
+    <button routerLink="/newSeafarer"
+      class="bg-blue-600 px-4 py-2 rounded-lg text-white text-lg hover:bg-blue-700 transition">
+      <i class="fas fa-plus pe-2"></i>
+      Add Seafarer
+    </button>
+    <!-- ? Filter -->
+    <button (click)="toggleInput()"
+      class="bg-white border-2 border-gray-300 px-4 py-2 rounded-lg text-gray-600 text-lg shadow-sm hover:bg-gray-100 transition">
+      <i class="fa-solid fa-filter"></i>
+      Filter
+    </button>
+    <!-- ?  Display Columns -->
+    <button
+      class="cursor-pointer bg-white border-2 border-gray-300 px-4 py-2 rounded-lg text-gray-600 text-lg shadow-sm hover:bg-gray-100 transition"
+      (click)="onToggleDisplayColumn()">
+      <i class="fa-solid fa-chart-simple"></i>
+      Display Columns
+    </button>
+  </div>
+
+  @if (showInput) {
+  <div class="mt-4 flex flex-col md:flex-row gap-4 bg-gray-50 px-4 py-4 rounded-lg">
+    <div class="flex-1">
+      <input [(ngModel)]="searchName" (input)="onSearchName()" type="text" placeholder="Filter by Name"
+        class="border-1 border-gray-300 rounded-lg w-full py-2">
+    </div>
+    <div class="flex-1">
+      <input [(ngModel)]="searchNationality" (input)="onSearchNationality()" type="text"
+        placeholder="Filter by Nationality" class="border-1 border-gray-300 rounded-lg w-full py-2">
+    </div>
+  </div>
+  }
+
+  @if (isShowDisplayColumns) {
+  <app-display-columns (closeDisplayColumn)="onCloseDisplayColumn()"
+    class="display-columns-section"></app-display-columns>
+  }
+
+</div>

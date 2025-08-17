@@ -1,0 +1,44 @@
+<form [formGroup]="entityForm" class="grid grid-cols-2 gap-x-6 gap-y-4">
+
+  <!-- ? Seaman Book NO. -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Seaman Book NO.</label>
+    <input formControlName="SeamanBookNO" type="text"
+      class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  </div>
+
+  <!-- ? Seaman Issue Date -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Seaman Issue Date</label>
+    <input formControlName="SeamanIssueDate" type="date"
+      class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  </div>
+
+  <!-- ? Seaman Expiry Date-->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Seaman Expiry Date</label>
+    <input formControlName="SeamanExpiryDate" type="date"
+      class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  </div>
+
+  <!-- ? Cicpa NO -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Cicpa NO</label>
+    <input formControlName="CicpaNO" type="text"
+      class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  </div>
+
+  <!-- ? Cicpa Issue Date -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Cicpa Issue Date</label>
+    <input formControlName="CicpaIssueDate" type="date"
+      class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  </div>
+
+  <!-- ? Cicpa Expiry Date -->
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">Cicpa Expiry Date</label>
+    <input formControlName="CicpaExpiryDate" type="date"
+      class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1">
+  </div>
+</form>

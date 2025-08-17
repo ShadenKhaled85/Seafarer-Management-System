@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { EducationalQualificationsComponent } from './educational-qualifications.component';
+
+describe('EducationalQualificationsComponent', () => {
+  let component: EducationalQualificationsComponent;
+  let fixture: ComponentFixture<EducationalQualificationsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [EducationalQualificationsComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(EducationalQualificationsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
