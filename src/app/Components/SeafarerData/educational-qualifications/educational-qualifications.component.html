@@ -1,1 +1,78 @@
-<p>educational-qualifications works!</p>
+<!-- Qualification Form -->
+<form [formGroup]="qualificationsForm">
+
+  <!-- Loop through FormArray controls -->
+  <div formArrayName="Qualifications">
+    <div *ngFor="let qualification of controls; let i = index" [formGroupName]="i"
+      class="grid grid-cols-2 gap-x-6 gap-y-4 border-b border-gray-200 pb-4 mb-4">
+
+      <!-- Degree / Course -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Degree / Course</label>
+        <input formControlName="DegreeOrCourse" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+      </div>
+
+      <!-- Major / Subject -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Major / Subject</label>
+        <input formControlName="MajorOrSubject" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+      </div>
+
+      <!-- Issue Date -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Issue Date</label>
+        <input formControlName="CourseIssueDate" type="date" class="w-full border border-gray-300 rounded-md px-3 py-2">
+      </div>
+
+      <!-- University -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">University</label>
+        <input formControlName="University" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+      </div>
+
+      <!-- Country -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+        <input formControlName="Country" type="text" class="w-full border border-gray-300 rounded-md px-3 py-2">
+      </div>
+
+      <!-- Remove button -->
+      <div class="col-span-2 flex justify-end items-center gap-4 py-2">
+        <button type="button" (click)="removeQualification(i)"
+          class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-lg">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add button -->
+  <div class="flex justify-end items-center gap-4 py-4">
+    <button type="button" (click)="addQualification()"
+      class="px-4 py-2 bg-green-500 hover:bg-green-700 text-white rounded-lg">Add</button>
+  </div>
+
+</form>
+
+<!-- Display table with added qualifications -->
+<div class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Qualifications Summary</h2>
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border px-4 py-2 text-left">Degree / Course</th>
+        <th class="border px-4 py-2 text-left">Major / Subject</th>
+        <th class="border px-4 py-2 text-left">Issue Date</th>
+        <th class="border px-4 py-2 text-left">University</th>
+        <th class="border px-4 py-2 text-left">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let qualification of controls">
+        <td class="border px-4 py-2">{{ qualification.value.DegreeOrCourse }}</td>
+        <td class="border px-4 py-2">{{ qualification.value.MajorOrSubject }}</td>
+        <td class="border px-4 py-2">{{ qualification.value.CourseIssueDate }}</td>
+        <td class="border px-4 py-2">{{ qualification.value.University }}</td>
+        <td class="border px-4 py-2">{{ qualification.value.Country }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

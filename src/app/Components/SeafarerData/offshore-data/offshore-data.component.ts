@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { EntityFormService } from '../../../Core/Services/entityForm/entity-form.service';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AddSeafarerFormsService } from '../../../Core/Services/addSeafarerForms/add-seafarer-form.service';
 
 @Component({
   selector: 'app-offshore-data',
@@ -10,16 +10,16 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class OffshoreDataComponent implements OnInit{
 
-  private readonly entityFormService = inject(EntityFormService);
+  private readonly AddSeafarerFormsService = inject(AddSeafarerFormsService);
   entityForm !: FormGroup;
 
   ngOnInit(): void {
     this.callEntityForm();
-    this.entityFormService.submitEntityForm()
+    this.AddSeafarerFormsService.submitEntityForm()
   }
 
   callEntityForm(){
-    this.entityForm = this.entityFormService.entityForm;
+    this.entityForm = this.AddSeafarerFormsService.entityForm;
     console.log(this.entityForm);
   }
 }

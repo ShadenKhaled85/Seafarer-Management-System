@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { EntityFormService } from '../../../Core/Services/entityForm/entity-form.service';
+import { AddSeafarerFormsService } from '../../../Core/Services/addSeafarerForms/add-seafarer-form.service';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './contact-data.component.css'
 })
 export class ContactDataComponent implements OnInit {
-  private readonly entityFormService = inject(EntityFormService);
+  private readonly AddSeafarerFormsService = inject(AddSeafarerFormsService);
   entityForm !: FormGroup;
 
   ngOnInit(): void {
@@ -17,6 +17,6 @@ export class ContactDataComponent implements OnInit {
   }
 
   callEntityForm(){
-    this.entityForm = this.entityFormService.entityForm;
+    this.entityForm = this.AddSeafarerFormsService.entityForm;
   }
 }

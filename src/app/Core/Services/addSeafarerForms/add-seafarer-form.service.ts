@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddSeafarerFormsService {
 
   entityForm !: FormGroup;
+  seafarerForm!: FormGroup; // Main Form
 
   constructor(private formBuilder: FormBuilder) {
-          this.entityForm = this.formBuilder.group({
+    // ======== ENTITY FORM ========
+      this.entityForm = this.formBuilder.group({
 
             // Personal Data Form
             EmpId: [0],
@@ -52,32 +54,112 @@ export class AddSeafarerFormsService {
             CicpaIssueDate: [null],
             CicpaExpiryDate: [null],
       })
+
+    // ======== MAIN SEAFARER FORM ========
+    this.seafarerForm = this.formBuilder.group({
+      entity: this.entityForm,
+      Qualifications: this.formBuilder.array([this.createQualification()]),
+      Certificates: this.formBuilder.array([]),
+      Languages: this.formBuilder.array([]),
+      References: this.formBuilder.array([])
+    });
   }
 
-  submitEntityForm(){
+  // ======== QUALIFICATIONS ========
+  createQualification(): FormGroup {
+    return this.formBuilder.group({
+      DegreeOrCourse: [null, Validators.required],
+      MajorOrSubject: [null, Validators.required],
+      CourseIssueDate: [null, Validators.required],
+      University: [null, Validators.required],
+      Country: [null, Validators.required],
+    });
+  }
+
+  // Get qualifications form array
+  get getQualificationsForm(){
+    return this.seafarerForm.get('Qualifications') as FormArray;
+  }
+
+  // Add a new qualification
+  addQualification() {
+    this.getQualificationsForm.push(this.createQualification());
+  }
+
+  // Remove qualification by index
+  removeQualification(index: number) {
+    this.getQualificationsForm.removeAt(index);
+  }
+
+  // ======== Certificates ========
+  createCertificates(): FormGroup{
+    return this.formBuilder.group({
+      Capacity: [null],
+      Regulation: [null],
+      IssueDate: [null],
+      ExpiryDate: [null],
+      IssuingAuthority: [null],
+      Limitations: [null],
+      Country: [null],
+      Type: [null],
+    })
+  }
+
+  // Get Certificates form array
+  get CertificatesForm(): FormArray{
+    return this.seafarerForm.get('Certificates') as FormArray;
+  }
+
+  // Add a new certificate
+  addCertificate(){
+    // this.CertificatesForm().push(this.createCertificates());
+  }
+
+  removeCertificate(index:number){
+    // this.getQualificationsForm().removeAt(index)
+  }
+
+  // ======== Languages ========
+  createLanguages(): FormGroup{
+    return this.formBuilder.group({
+      Capacity: [null],
+      Regulation: [null],
+      IssueDate: [null],
+      ExpiryDate: [null],
+      IssuingAuthority: [null],
+      Limitations: [null],
+      Country: [null],
+    })
+  }
+
+  // ======== References ========
+  createReference(): FormGroup{
+    return this.formBuilder.group({
+      PersonName: [null],
+      CompanyName: [null],
+      Country: [null],
+      Fax: [null],
+      EmailId: [null],
+    })
+  }
+
+
+  // ======== SUBMIT SEAFARER FORM ========
+  submitSeafarerForm() {
+    if (this.seafarerForm.valid) {
+      console.log(this.seafarerForm.value);
+    } else {
+      console.warn('Form is invalid');
+    }
+  }
+
+    submitEntityForm(){
     if(this.entityForm.valid){
       console.log(this.entityForm.value);
     }
   }
 
-
-
-          // IDExPiryDate: [''],
-          // SkypeID: [''],
-          // Declaration: [''],
-          // SignedOffFromAShipDueToMedicalReason: [false],
-          // SignedOffFromAShipDueToMedicalReasonComment: [''],
-          // UndergoneAnyMdicalOperation: [null],
-          // UndergoneAnyMdicalOperationComment: [''],
-          // DoctorConsultation: [null],
-          // DoctorConsultationComment: [''],
-          // HealthOrDisabilityProblem: [null],
-          // HealthOrDisabilityProblemComment: [''],
-          // InquiryOrInvolvedMaritimeAccident: [false],
-          // InquiryOrInvolvedMaritimeAccidentComment: [''],
-          // LicenseSuspendedOrRevoked: [null],
-          // LicenseSuspendedOrRevokedComment: ['']
-
+}
 
     //     Qualifications: this.fb.array([]),
     //     Certificates: this.fb.array([]),
@@ -169,4 +251,5 @@ export class AddSeafarerFormsService {
     //   }));
     // }
 
-}
+
+

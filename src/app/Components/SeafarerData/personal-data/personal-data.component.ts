@@ -1,9 +1,9 @@
-import { EntityFormService } from './../../../Core/Services/entityForm/entity-form.service';
 import { SeafarersApiService } from './../../../Core/Services/Seafarer-Api/seafarers-api.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { IEmployee } from '../../../Models/iemployee';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IVendor } from '../../../Models/ivendor';
+import { AddSeafarerFormsService } from '../../../Core/Services/addSeafarerForms/add-seafarer-form.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -14,7 +14,7 @@ import { IVendor } from '../../../Models/ivendor';
 export class PersonalDataComponent implements OnInit {
 
   private readonly seafarersApiService = inject(SeafarersApiService);
-  private readonly entityFormService = inject(EntityFormService);
+  private readonly AddSeafarerFormsService = inject(AddSeafarerFormsService);
 
   employees: IEmployee[]=[];
   vendors: IVendor[]=[];
@@ -29,7 +29,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   callEntityForm(){
-    this.entityForm = this.entityFormService.entityForm;
+    this.entityForm = this.AddSeafarerFormsService.entityForm;
   }
 
   fillEmployee(){

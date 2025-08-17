@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EntityFormService } from './entity-form.service';
+import { AddSeafarerFormsService } from './entity-form.service';
 
-describe('EntityFormService', () => {
-  let service: EntityFormService;
+describe('AddSeafarerFormsService', () => {
+  let service: AddSeafarerFormsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EntityFormService);
+    service = TestBed.inject(AddSeafarerFormsService);
   });
 
   it('should be created', () => {
