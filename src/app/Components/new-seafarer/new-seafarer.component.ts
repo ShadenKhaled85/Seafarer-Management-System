@@ -32,6 +32,7 @@ export class NewSeafarerComponent {
       next:(res)=>{
         console.log(res);
         this.newSeafarer = res;
+        this.addSeafarerFormsService.resetEntityForm();
         this.onCloseAddSeafarer();
       },
       error:(err)=>{

@@ -4,12 +4,12 @@ import { seafarerDisplayedColumns } from '../../Enums/SeafarerEnums';
 import { seafarerDataColumn } from '../../Models/seafarerDataColumn';
 import { SeafarersApiService } from '../../Core/Services/Seafarer-Api/seafarers-api.service';
 import { SeafarerDisplayColumnsService } from '../../Core/Services/Seafarer-logic/seafarer-display-columns.service';
-import { AddSeafarerFormsService } from '../../Core/Services/addSeafarerForms/add-seafarer-form.service';
+
 
 @Component({
   selector: 'app-seafarer-emp-data',
   imports: [],
-  templateUrl: './seafarer-emp-data.component.html',
+templateUrl: './seafarer-emp-data.component.html',
   styleUrl: './seafarer-emp-data.component.css'
 })
 export class SeafarerEmpDataComponent {
@@ -49,6 +49,12 @@ export class SeafarerEmpDataComponent {
         }
       })
 
+      this.seafarerDisplayColumnsService.isNewForm.subscribe({
+        next:()=>{
+          this.getAllSeafarers();
+        }
+      })
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -67,6 +73,7 @@ export class SeafarerEmpDataComponent {
       next:(data)=> {
           this.seafarerEmployeeData = data.Data;
           this.filteredseafarerEmployeeData = this.seafarerEmployeeData;
+          this.filteredseafarerEmployeeData = this.filteredseafarerEmployeeData.slice( this.filteredseafarerEmployeeData.length - 5, this.filteredseafarerEmployeeData.length)
           console.log(this.filteredseafarerEmployeeData);
       },
       error:(err)=> {

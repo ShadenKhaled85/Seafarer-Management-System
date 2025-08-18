@@ -10,6 +10,13 @@ export class NewSeafarerSidebarComponent {
 
   @Output() sideNavEvent = new EventEmitter<string>()
 
+  defaultSideNav!: string;
+
+  ngOnInit(){
+    this.defaultSideNav = 'personalData'
+    this.sideNavEvent.emit(this.defaultSideNav)
+
+  }
   onSideNav(sideNav: string){
     this.sideNavEvent.emit(sideNav)
   }

@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SeafarerDisplayColumnsService {
 
   private $isColumnDisplay = new BehaviorSubject<boolean>(false);
+  private $isNewForm = new BehaviorSubject<boolean>(false)
 
   constructor() { }
 
@@ -17,6 +18,16 @@ export class SeafarerDisplayColumnsService {
   get isColumnDisplay(){
     return this.$isColumnDisplay
   }
+
+
+  changeIsNewForm(){
+    this.$isNewForm.next(true)
+  }
+
+  get isNewForm(){
+    return this.$isNewForm
+  }
+
 
 
 }

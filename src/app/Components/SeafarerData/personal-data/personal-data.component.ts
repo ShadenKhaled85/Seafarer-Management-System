@@ -57,8 +57,8 @@ export class PersonalDataComponent implements OnInit {
   }
 
   onNameSelect() {
-  const selectedEmpId = this.entityForm.get('EmpId')?.value;
-  console.log("Selected employee id:", selectedEmpId);
+    const selectedEmpId = this.entityForm.get('EmpId')?.value;
+    console.log("Selected employee id:", selectedEmpId);
 }
 
   onVisaSelect(){

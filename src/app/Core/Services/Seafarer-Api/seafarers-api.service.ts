@@ -39,12 +39,5 @@ export class SeafarersApiService {
       { headers: this.headers }
     );
   }
-
-  activateSeafarerToggle(seafarerId: number, status: number, empId: number): Observable<ISeafarerData[]> {
-    return this.httpClient.post<ISeafarerData[]>(
-      `${environment.baseUrl}/api/MarineServices/ActivateAndInActivateSeafarer?Id=1013&InCT&Status=2&EmpId=1`,
-      { headers: this.headers }
-    );
-  }
 }
 
