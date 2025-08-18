@@ -1,39 +1,48 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DisplayColumnsComponent } from "../display-columns/display-columns.component";
-import { RouterLink } from '@angular/router';
+import { NewSeafarerComponent } from "../new-seafarer/new-seafarer.component";
 
 @Component({
   selector: 'app-seafarers-filter',
-  imports: [FormsModule, DisplayColumnsComponent, RouterLink],
+  imports: [FormsModule, DisplayColumnsComponent, NewSeafarerComponent],
   templateUrl: './seafarers-filter.component.html',
   styleUrl: './seafarers-filter.component.css'
 })
 export class SeafarersFilterComponent {
 
   @Output() searchNameEvent = new EventEmitter();
+  @Output() searchNationalityEvent = new EventEmitter();
 
   searchName : string = '';
-  isShowDisplayColumns: boolean = false;
-  @Output() searchNationalityEvent = new EventEmitter();
   searchNationality : string = '';
+  isShowDisplayColumns: boolean = false;
   showInput : boolean = false;
+  isToggleAddSeafarer : boolean = false;
 
+  onToggleAddSeafarer(){
+    this.isToggleAddSeafarer = !this.isToggleAddSeafarer;
+  }
   onSearchName(){
     this.searchNameEvent.emit(this.searchName);
   }
 
   onToggleDisplayColumn(){
     this.isShowDisplayColumns = !this.isShowDisplayColumns;
-
-  }
-  onCloseDisplayColumn(){
-    this.isShowDisplayColumns = false;
   }
 
   onSearchNationality(){
     this.searchNationalityEvent.emit(this.searchNationality);
   }
+
+  onCloseAddSeafarer(){
+    this.isToggleAddSeafarer = false;
+  }
+
+  onCloseDisplayColumn(){
+    this.isShowDisplayColumns = false;
+  }
+
 
   toggleInput(){
     this.showInput = !this.showInput;

@@ -1,29 +1,67 @@
-<div class="fixed inset-0 flex items-center justify-center">
+<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+
+  <!-- ? Modal -->
   <div class="bg-white rounded-md w-[80vw] h-[90vh] flex flex-col shadow-lg overflow-hidden">
 
-    <div class="bg-white px-6 py-6 border-b border-gray-200">
+    <div class="flex justify-between bg-white px-6 py-6 border-b border-gray-200">
       <h2 class="text-lg font-bold">Add New Seafarer</h2>
+      <p (click)="onCloseAddSeafarer()" class="cursor-pointer text-xl">X</p>
     </div>
 
     <div class="flex flex-1 overflow-hidden border-b border-gray-200">
       <!-- ? Sidebar -->
       <div class="w-1/4 bg-gray-50 p-4 border-r border-gray-200 overflow-y-auto">
-        <app-new-seafarer-sidebar></app-new-seafarer-sidebar>
+        <app-new-seafarer-sidebar (sideNavEvent)="isSideNav = $event"></app-new-seafarer-sidebar>
       </div>
 
-      <!-- ? Content -->
       <div class="w-3/4 p-6 overflow-y-auto flex flex-col justify-between">
         <div class="flex-1">
-          <router-outlet></router-outlet>
+          @if (isSideNav == 'personalData') {
+          <app-personal-data></app-personal-data>
+          }
+
+          @if (isSideNav == 'contactData') {
+          <app-contact-data></app-contact-data>
+          }
+
+          @if (isSideNav == 'offshoreData') {
+          <app-offshore-data></app-offshore-data>
+          }
+
+          @if (isSideNav == 'educationalQualifications') {
+          <app-educational-qualifications></app-educational-qualifications>
+          }
+
+          @if (isSideNav == 'certificate') {
+          <app-certificate></app-certificate>
+          }
+
+          @if (isSideNav == 'otherTraining') {
+          <app-other-training></app-other-training>
+          }
+
+          @if (isSideNav == 'languages') {
+          <app-languages></app-languages>
+          }
+
+          @if (isSideNav == 'healthData') {
+          <app-health-data></app-health-data>
+          }
+
+          @if (isSideNav == 'references') {
+          <app-references></app-references>
+          }
         </div>
       </div>
     </div>
 
-    <!-- ? Action Buttons -->
     <div class="flex justify-end items-center gap-4 py-4 me-4">
-      <button class="bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300">Cancel</button>
-      <button (click)="submitSeafarerForm()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Save
-        Seafarer</button>
+      <button (click)="onCloseAddSeafarer()" class="bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300">
+        Cancel
+      </button>
+      <button (click)="submitSeafarerForm()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Save Seafarer
+      </button>
     </div>
   </div>
 </div>

@@ -13,8 +13,4 @@ export class SeafarersComponent {
   searchName : string = '';
   searchNationality : string = '';
 
-  ngOnInit(){
-  }
-
-
 }

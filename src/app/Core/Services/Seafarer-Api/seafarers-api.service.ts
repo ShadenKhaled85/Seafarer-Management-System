@@ -15,6 +15,7 @@ export class SeafarersApiService {
   private headers = new HttpHeaders({
     Authorization: `Bearer ${this.token}`
   });
+
   constructor(private httpClient: HttpClient) { }
 
   getAllSeafarers():Observable<ISeafarer>{
@@ -37,6 +38,5 @@ export class SeafarersApiService {
       { headers: this.headers }
     );
   }
-
 }
 

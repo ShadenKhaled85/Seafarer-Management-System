@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ICertificate, IQualificaiton, ISeafarer } from '../../../Models/ISeafarer';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -88,7 +88,7 @@ export class AddSeafarerFormsService {
 
     // ======== MAIN SEAFARER FORM ========
     this.seafarerForm = this.formBuilder.group({
-      entity: this.entityForm,
+      Entity: this.entityForm,
       Qualifications: this.qualificationData,
       Certificates: this.certificateData,
       Languages: this.formBuilder.array([]),
@@ -134,7 +134,7 @@ export class AddSeafarerFormsService {
 // ======== SUBMIT SEAFARER FORM ========
   saveSeafarer(): Observable<ISeafarer> {
     const payload = {
-      entity: this.entityForm.value,
+      Entity: this.entityForm.value,
       Qualifications: this.qualificationData,
       Certificates: this.certificateData,
       Languages: this.languages.value,
@@ -148,55 +148,10 @@ export class AddSeafarerFormsService {
       payload,
       { headers: this.headers }
     );
-}
+  }
 
 }
 
-  // ======== References ========
-  // createReference(): FormGroup{
-  //   return this.formBuilder.group({
-  //     PersonName: [null],
-  //     CompanyName: [null],
-  //     Country: [null],
-  //     Fax: [null],
-  //     EmailId: [null],
-  //   })
-  // }
-
-
-
-    // get references(): FormArray {
-    //   return this.seafarerForm.get('References') as FormArray;
-    // }
-    // get workExperiences(): FormArray {
-    //   return this.seafarerForm.get('WorkExperiences') as FormArray;
-    // }
-
-
-    // // Add Reference
-    // addReference() {
-    //   this.references.push(this.fb.group({
-    //     PersonName: [''],
-    //     CompanyName: [''],
-    //     Country: [''],
-    //     Fax: [''],
-    //     EmailId: ['']
-    //   }));
-    // }
-
-    // // Add WorkExperience
-    // addWorkExperience() {
-    //   this.workExperiences.push(this.fb.group({
-    //     VesselName: [''],
-    //     VesselType: [''],
-    //     Rank: [''],
-    //     From: [''],
-    //     To: [''],
-    //     GRT: [''],
-    //     BHP: [''],
-    //     CompanyName: ['']
-    //   }));
-    // }
 
 
 

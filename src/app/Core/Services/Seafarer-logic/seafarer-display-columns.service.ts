@@ -7,9 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class SeafarerDisplayColumnsService {
 
   private $isColumnDisplay = new BehaviorSubject<boolean>(false)
-  
-  constructor() { }
 
+  constructor() { }
 
   changeColumnDisplay(){
     this.$isColumnDisplay.next(true)

@@ -12,8 +12,9 @@ import { SeafarerDisplayColumnsService } from '../../Core/Services/Seafarer-logi
 export class DisplayColumnsComponent implements OnInit {
 
   private readonly seafarerDisplayColumnsService = inject(SeafarerDisplayColumnsService)
-  displayColumns!: seafarerDataColumn[];
+
   @Output() closeDisplayColumn = new EventEmitter();
+  displayColumns!: seafarerDataColumn[];
 
   ngOnInit(){
     this.displayColumns = seafarerDisplayedColumns
@@ -28,7 +29,5 @@ export class DisplayColumnsComponent implements OnInit {
   onCloseDisplayColumn(){
     this.closeDisplayColumn.emit(true);
   }
-
-
 
 }

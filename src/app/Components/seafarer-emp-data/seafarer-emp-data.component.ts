@@ -48,7 +48,6 @@ export class SeafarerEmpDataComponent {
           }))
         }
       })
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -92,26 +91,4 @@ export class SeafarerEmpDataComponent {
     console.log(this.filteredseafarerEmployeeData);
   }
 
-  // sortAsc(column: string) {
-  //   this.filteredseafarerEmployeeData.sort((a, b) =>
-  //     String(a[column]).localeCompare(String(b[column]))
-  //   );
-  // }
-
-  // sortDesc(column: string) {
-  //   this.filteredseafarerEmployeeData.sort((a, b) =>
-  //     String(b[column]).localeCompare(String(a[column]))
-  //   );
-  // }
-
-  // onSort(column: string) {
-  //   if (this.sortColumn === column && this.sortDirection === 'asc') {
-  //     this.sortDirection = 'desc';
-  //     this.sortDesc(column);
-  //   } else {
-  //     this.sortColumn = column;
-  //     this.sortDirection = 'asc';
-  //     this.sortAsc(column);
-  //   }
-  // }
 }
