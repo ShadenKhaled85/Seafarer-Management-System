@@ -18,17 +18,13 @@ import { ReferencesComponent } from "../SeafarerData/references/references.compo
   templateUrl: './new-seafarer.component.html',
   styleUrl: './new-seafarer.component.css'
 })
-export class NewSeafarerComponent implements OnInit {
+export class NewSeafarerComponent {
 
   private readonly addSeafarerFormsService = inject(AddSeafarerFormsService)
 
   @Output() closeAddSeafarer = new EventEmitter();
   newSeafarer !: ISeafarer;
   isSideNav: string = '';
-
-  ngOnInit(): void {
-
-  }
 
   submitSeafarerForm(){
     this.addSeafarerFormsService.saveSeafarer().subscribe({

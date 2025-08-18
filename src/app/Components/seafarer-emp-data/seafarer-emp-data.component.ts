@@ -1,9 +1,10 @@
 import { Component, inject, Input, SimpleChanges } from '@angular/core';
-import { ISeafarer } from '../../Models/ISeafarer';
+import { ISeafarer, ISeafarerData } from '../../Models/ISeafarer';
 import { seafarerDisplayedColumns } from '../../Enums/SeafarerEnums';
 import { seafarerDataColumn } from '../../Models/seafarerDataColumn';
 import { SeafarersApiService } from '../../Core/Services/Seafarer-Api/seafarers-api.service';
 import { SeafarerDisplayColumnsService } from '../../Core/Services/Seafarer-logic/seafarer-display-columns.service';
+import { AddSeafarerFormsService } from '../../Core/Services/addSeafarerForms/add-seafarer-form.service';
 
 @Component({
   selector: 'app-seafarer-emp-data',
@@ -16,14 +17,14 @@ export class SeafarerEmpDataComponent {
   private readonly seafarerDisplayColumnsService = inject(SeafarerDisplayColumnsService)
 
   displayColumns!: seafarerDataColumn[];
+  newSeafarer !: ISeafarer;
   @Input() searchName : string = '';
   @Input() searchNationality: string = '';
 
   seafarerEmployeeData!: any[];
   filteredseafarerEmployeeData!: any[];
   employee !: ISeafarer[];
-  sortColumn: string | null = null;
-  sortDirection: 'asc' | 'desc' = 'asc';
+  seafarerToggleData!: ISeafarerData[];
 
   ngOnInit(){
     this.getAllSeafarers();
@@ -48,6 +49,7 @@ export class SeafarerEmpDataComponent {
           }))
         }
       })
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,8 +67,9 @@ export class SeafarerEmpDataComponent {
     this.seafarersApiService.getAllSeafarers().subscribe({
       next:(data)=> {
           this.seafarerEmployeeData = data.Data;
-          this.seafarerEmployeeData = data.Data
           this.filteredseafarerEmployeeData = this.seafarerEmployeeData;
+          this.seafarerToggleData = data.Data;
+          this.onToggleActions(data.Data[0]);
           console.log(this.filteredseafarerEmployeeData);
       },
       error:(err)=> {
@@ -89,6 +92,19 @@ export class SeafarerEmpDataComponent {
       nationality.Nationality.toLowerCase().includes(this.searchNationality.toLowerCase())
     )
     console.log(this.filteredseafarerEmployeeData);
+  }
+
+  onToggleActions(seafarer: ISeafarerData){
+    const newStatus = seafarer.Status === 1 ? 2 : 1;
+    this.seafarersApiService.activateSeafarerToggle(seafarer.Id, seafarer.Status, seafarer.EmpId).subscribe({
+      next:(res)=>{
+        console.log(seafarer.Status);
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
 }

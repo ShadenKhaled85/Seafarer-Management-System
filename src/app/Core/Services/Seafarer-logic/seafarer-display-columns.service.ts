@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SeafarerDisplayColumnsService {
 
-  private $isColumnDisplay = new BehaviorSubject<boolean>(false)
+  private $isColumnDisplay = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
