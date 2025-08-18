@@ -11,11 +11,12 @@ import { environment } from '../../environment/environment';
 
 export class AddSeafarerFormsService {
 
-  private token = 'Zmx8WZ4E30uT0TjTd4qRrdAes1H_NFSj4qGPfb2Kn1UuqE9pPjf4bpNsFoIN7_5afxQPsEkEG7sfex31Vpx84AorpaG5gBP25pA2ESjpT7EWV39YJ7ykpJpEf7FLn9jRhhD7ory-pP6p73EP_EgIXieWE1nfR_dMYtrWKPcUdWasIberamTCC6XFbsW-SBynWtQZs-BcH7qCuljG7_KmihVaiO5IDiQDqwudW229aTury2-nz6LOWhTEtQINeAdDugs-Myg7UlXfm0cJ55Oi8ONB_jDWH6GNlOU-_TwZmQk1fAODLxB0f9sT05mxvJfTbLCYLpe7Bt6unliUfZef_tNvJ1FuA3fc6XbwZ1Wf2EJtFg4Lv5Y4I5QlY6KGZO7_Y9mnde2RF8RdlDtRh5lMRAwj-B1JxzBZD8cmatcz0UE-7KNijZ3EAJ1AwsaHpn10iYBPA2lKDtjU8kDO2GhGuRuupgGfCnJUy-9nds5SknjPfOawo539eXFn8baQQUNLoH8EU3nAVUGKR9lHTRZUszA6aAVlhFiGnH3S8ZI5oKA';
-
-  private headers = new HttpHeaders({
-    Authorization: `Bearer ${this.token}`
-  });
+  private get headers() {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
 
   seafarerForm!: FormGroup; // Main Form
   entityForm !: FormGroup;
