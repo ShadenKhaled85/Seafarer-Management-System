@@ -11,6 +11,7 @@ import { OtherTrainingComponent } from "../SeafarerData/other-training/other-tra
 import { LanguagesComponent } from "../SeafarerData/languages/languages.component";
 import { HealthDataComponent } from "../SeafarerData/health-data/health-data.component";
 import { ReferencesComponent } from "../SeafarerData/references/references.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-seafarer',
