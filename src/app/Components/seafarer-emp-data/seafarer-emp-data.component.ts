@@ -24,7 +24,6 @@ export class SeafarerEmpDataComponent {
   seafarerEmployeeData!: any[];
   filteredseafarerEmployeeData!: any[];
   employee !: ISeafarer[];
-  seafarerToggleData!: ISeafarerData[];
 
   ngOnInit(){
     this.getAllSeafarers();
@@ -68,8 +67,6 @@ export class SeafarerEmpDataComponent {
       next:(data)=> {
           this.seafarerEmployeeData = data.Data;
           this.filteredseafarerEmployeeData = this.seafarerEmployeeData;
-          this.seafarerToggleData = data.Data;
-          this.onToggleActions(data.Data[0]);
           console.log(this.filteredseafarerEmployeeData);
       },
       error:(err)=> {
@@ -94,17 +91,5 @@ export class SeafarerEmpDataComponent {
     console.log(this.filteredseafarerEmployeeData);
   }
 
-  onToggleActions(seafarer: ISeafarerData){
-    const newStatus = seafarer.Status === 1 ? 2 : 1;
-    this.seafarersApiService.activateSeafarerToggle(seafarer.Id, seafarer.Status, seafarer.EmpId).subscribe({
-      next:(res)=>{
-        console.log(seafarer.Status);
-        console.log(res);
-      },
-      error:(err)=>{
-        console.log(err);
-      }
-    })
-  }
 
 }
